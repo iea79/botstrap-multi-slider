@@ -28,16 +28,15 @@ function initSlider(slider, columns, columnsTabletHorizontal, columnsTablet, col
     }
 
     $(slider).on('slide.bs.carousel', function (e) {
-        let item = $(e.relatedTarget);
-        let index = item.index();
-        let itemsCount = slideCount;
+        let item = $(e.relatedTarget),
+            index = item.index(),
+            itemsCount = slideCount;
 
         slideDirection = e.direction;
         currentSlide = e.to;
 
         renderArrows();
         renderVisibleSlide();
-
     });
 
     $(slider + ' .carousel-control').on('click', function(e) {
@@ -159,7 +158,7 @@ function initSlider(slider, columns, columnsTabletHorizontal, columnsTablet, col
 }
 
 initSlider('#carousel', 4, 3, 2, 2, 1);
-initSlider('#carousel2', 4, 3, 3, 2, 1);
+initSlider('#carousel2', 3, 3, 2, 2, 1);
 initSlider('#carousel3', 4, 3, 3, 2, 1);
 initSlider('#carousel-img', 2, 1);
 initSlider('#carousel-home', 2, 1);

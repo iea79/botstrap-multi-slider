@@ -14,7 +14,7 @@ block content
         code initSlider('#carousel', 4, 3, 2, 2, 1);
         #carousel.carousel(data-ride='carousel' data-interval="0")
             .carousel-inner.row(role='listbox')
-                each value, i in ['', '', '', '', '', '', '', '', '', '', '', '', '', '']
+                each value, i in ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
                     +slide(i)
 
             a.carousel-control.carousel-control-prev(href='#carousel', role='button', data-slide='prev' disabled)
@@ -37,10 +37,10 @@ block content
                 li(data-target='#carousel', data-slide-to='13')
 
         .h1.text-center Example 2
-        code initSlider('#carousel2', 4, 3, 3, 2, 1);
+        code initSlider('#carousel2', 3, 3, 2, 2, 1);
         #carousel2.carousel(data-ride='carousel' data-interval="0")
             .carousel-inner.row(role='listbox')
-                each value, i in ['', '']
+                each value, i in ['', '', '', '', '', '']
                     +slide(i)
 
             a.carousel-control.carousel-control-prev(href='#carousel2', role='button', data-slide='prev' disabled)
@@ -49,26 +49,12 @@ block content
             ol.carousel-indicators
                 li.active(data-target='#carousel2', data-slide-to='0')
                 li(data-target='#carousel2', data-slide-to='1')
+                li(data-target='#carousel2', data-slide-to='2')
+                li(data-target='#carousel2', data-slide-to='3')
+                li(data-target='#carousel2', data-slide-to='4')
+                li(data-target='#carousel2', data-slide-to='5')
 
         .h1.text-center Example 3
-        code initSlider('#carousel3', 4, 3, 3, 2, 1);
-        #carousel3.carousel(data-ride='carousel' data-interval="0")
-            .carousel-inner.row(role='listbox')
-                each value, i in ['', '', '', '', '', '']
-                    +slide(i)
-
-            a.carousel-control.carousel-control-prev(href='#carousel3', role='button', data-slide='prev' disabled)
-            a.carousel-control.carousel-control-next(href='#carousel3', role='button', data-slide='next')
-
-            ol.carousel-indicators
-                li.active(data-target='#carousel3', data-slide-to='0')
-                li(data-target='#carousel3', data-slide-to='1')
-                li(data-target='#carousel3', data-slide-to='2')
-                li(data-target='#carousel3', data-slide-to='3')
-                li(data-target='#carousel3', data-slide-to='4')
-                li(data-target='#carousel3', data-slide-to='5')
-
-        .h1.text-center Example 4
         code initSlider('#carousel-img', 2, 1);
         #carousel-img.carousel(data-ride='carousel' data-interval="0")
             .carousel-inner.row(role='listbox')
