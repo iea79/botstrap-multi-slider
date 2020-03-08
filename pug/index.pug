@@ -1,0 +1,110 @@
+extends templ/layout.pug
+
+mixin slide(i)
+    if i==0
+        .carousel-item.active
+            .box= i+1
+    else
+        .carousel-item
+            .box= i+1
+
+block content
+    .container
+        .h1.text-center Example 1
+        code initSlider('#carousel', 4, 3, 2, 2, 1);
+        #carousel.carousel(data-ride='carousel' data-interval="0")
+            .carousel-inner.row(role='listbox')
+                each value, i in ['', '', '', '', '', '', '', '']
+                    +slide(i)
+
+            a.carousel-control.carousel-control-prev(href='#carousel', role='button', data-slide='prev' disabled)
+            a.carousel-control.carousel-control-next(href='#carousel', role='button', data-slide='next')
+
+            ol.carousel-indicators
+                li.active(data-target='#carousel', data-slide-to='0')
+                li(data-target='#carousel', data-slide-to='1')
+                li(data-target='#carousel', data-slide-to='2')
+                li(data-target='#carousel', data-slide-to='3')
+                li(data-target='#carousel', data-slide-to='4')
+                li(data-target='#carousel', data-slide-to='5')
+                li(data-target='#carousel', data-slide-to='6')
+                li(data-target='#carousel', data-slide-to='7')
+
+        .h1.text-center Example 2
+        code initSlider('#carousel2', 4, 3, 3, 2, 1);
+        #carousel2.carousel(data-ride='carousel' data-interval="0")
+            .carousel-inner.row(role='listbox')
+                each value, i in ['', '']
+                    +slide(i)
+
+            a.carousel-control.carousel-control-prev(href='#carousel2', role='button', data-slide='prev' disabled)
+            a.carousel-control.carousel-control-next(href='#carousel2', role='button', data-slide='next')
+
+            ol.carousel-indicators
+                li.active(data-target='#carousel2', data-slide-to='0')
+                li(data-target='#carousel2', data-slide-to='1')
+
+        .h1.text-center Example 3
+        code initSlider('#carousel3', 4, 3, 3, 2, 1);
+        #carousel3.carousel(data-ride='carousel' data-interval="0")
+            .carousel-inner.row(role='listbox')
+                each value, i in ['', '', '', '', '', '']
+                    +slide(i)
+
+            a.carousel-control.carousel-control-prev(href='#carousel3', role='button', data-slide='prev' disabled)
+            a.carousel-control.carousel-control-next(href='#carousel3', role='button', data-slide='next')
+
+            ol.carousel-indicators
+                li.active(data-target='#carousel3', data-slide-to='0')
+                li(data-target='#carousel3', data-slide-to='1')
+                li(data-target='#carousel3', data-slide-to='2')
+                li(data-target='#carousel3', data-slide-to='3')
+                li(data-target='#carousel3', data-slide-to='4')
+                li(data-target='#carousel3', data-slide-to='5')
+
+        .h1.text-center Example 4
+        code initSlider('#carousel-img', 2, 1);
+        #carousel-img.carousel(data-ride='carousel' data-interval="0")
+            .carousel-inner.row(role='listbox')
+                .carousel-item.active
+                    img(src="img/1480439597175676615.jpg", alt="alt")
+                .carousel-item
+                    img(src="img/1480439597175676615.jpg", alt="alt")
+                .carousel-item
+                    img(src="img/1480439597175676615.jpg", alt="alt")
+                .carousel-item
+                    img(src="img/1480439597175676615.jpg", alt="alt")
+                .carousel-item
+                    img(src="img/1480439597175676615.jpg", alt="alt")
+                .carousel-item
+                    img(src="img/1480439597175676615.jpg", alt="alt")
+
+            a.carousel-control.carousel-control-prev(href='#carousel-img', role='button', data-slide='prev' disabled)
+            a.carousel-control.carousel-control-next(href='#carousel-img', role='button', data-slide='next')
+
+            ol.carousel-indicators
+                li.active(data-target='#carousel-img', data-slide-to='0')
+                li(data-target='#carousel-img', data-slide-to='1')
+                li(data-target='#carousel-img', data-slide-to='2')
+                li(data-target='#carousel-img', data-slide-to='3')
+                li(data-target='#carousel-img', data-slide-to='4')
+                li(data-target='#carousel-img', data-slide-to='5')
+
+        .h1 Slider without spaces
+        code initSlider('#carousel-home', 2, 1);
+        #carousel-home.carousel(data-ride='carousel' data-interval="0")
+            .carousel-inner.row.row-nogup(role='listbox')
+                each value, i in ['', '', '', '']
+                    +slide(i)
+
+            a.carousel-control.carousel-control-prev(href='#carousel-home', role='button', data-slide='prev' disabled)
+            a.carousel-control.carousel-control-next(href='#carousel-home', role='button', data-slide='next')
+
+            ol.carousel-indicators
+                li.active(data-target='#carousel-home', data-slide-to='0')
+                li(data-target='#carousel-home', data-slide-to='1')
+                li(data-target='#carousel-home', data-slide-to='2')
+                li(data-target='#carousel-home', data-slide-to='3')
+
+        br
+        br
