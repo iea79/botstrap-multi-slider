@@ -10,13 +10,15 @@ function initSlider(slider, columns, columnsTabletHorizontal, columnsTablet, col
         xsWidth = 480,
         mobileWidth = 767,
         tabletWidth = 991,
-        tabletHorizontalWidth = 1199;
+        tabletHorizontalWidth = 1199,
+        touchDevice = navigator.userAgent.match(/iPhone|iPad|iPod|Android|BlackBerry|Opera Mini|IEMobile/i);
 
 
     if (!columns) {
         slideCount = 1;
     } else {
         renderColumns();
+        renderArrows();
         renderDots();
     }
 
@@ -25,7 +27,7 @@ function initSlider(slider, columns, columnsTabletHorizontal, columnsTablet, col
         $(slider + ' .carousel-indicators').hide();
     }
 
-    $(slider).on('slid.bs.carousel', function (e) {
+    $(slider).on('slide.bs.carousel', function (e) {
         let item = $(e.relatedTarget);
         let index = item.index();
         let itemsCount = slideCount;
@@ -33,16 +35,7 @@ function initSlider(slider, columns, columnsTabletHorizontal, columnsTablet, col
         slideDirection = e.direction;
         currentSlide = e.to;
 
-        if (currentSlide === 0) {
-            $(slider + ' .carousel-control-prev').attr('disabled', true);
-        } else {
-            $(slider + ' .carousel-control-prev').attr('disabled', false);
-        }
-        if (currentSlide === (itemsTotal - slideCount)) {
-            $(slider + ' .carousel-control-next').attr('disabled', true);
-        } else {
-            $(slider + ' .carousel-control-next').attr('disabled', false);
-        }
+        renderArrows();
         renderVisibleSlide();
 
     });
@@ -52,24 +45,30 @@ function initSlider(slider, columns, columnsTabletHorizontal, columnsTablet, col
             e.preventDefault();
             e.stopPropagation();
         } else {
-            renderDots();
+            if (!touchDevice) {
+                if ($(this).hasClass('carousel-control-next')) {
+                    $(slider).carousel(currentSlide + (slideCount-1));
+                }
+                if ($(this).hasClass('carousel-control-prev')) {
+                    $(slider).carousel(currentSlide - (slideCount-1));
+                }
+            }
         }
     });
 
-    $(slider + ' .carousel-indicators li').on('click', function() {
+    $(slider + ' .carousel-indicators li').on('click', function(e) {
         if ($(this).hasClass('disabled') || $(this).hasClass('active') ) {
             e.preventDefault();
             e.stopPropagation();
             return;
         }
         // Fix direction after click
-        if ($(this).index() > currentSlide) {
-            slideDirection = 'left';
-        } else {
-            slideDirection = 'right';
-        }
+        // if ($(this).index() > currentSlide) {
+        //     slideDirection = 'left';
+        // } else {
+        //     slideDirection = 'right';
+        // }
         renderVisibleSlide();
-        renderDots();
 
     });
 
@@ -97,19 +96,29 @@ function initSlider(slider, columns, columnsTabletHorizontal, columnsTablet, col
         });
     };
 
-    function renderDots() {
-        $(slider + ' .carousel-indicators li').removeClass('siblings');
-        $(slider + ' .carousel-indicators li').each(function(index, el) {
-            if (index > (itemsTotal - slideCount)) {
-                $(el).hide();
+    function renderArrows() {
+        if (!touchDevice) {
+            if (currentSlide === 0) {
+                $(slider + ' .carousel-control-prev').attr('disabled', true);
             } else {
-                $(el).show();
+                $(slider + ' .carousel-control-prev').attr('disabled', false);
             }
-        });
-        setTimeout(function () {
-            $(slider + ' .carousel-indicators li.active').next().addClass('siblings');
-            $(slider + ' .carousel-indicators li.active').prev().addClass('siblings');
-        }, 150);
+            if (currentSlide === (itemsTotal - slideCount)) {
+                $(slider + ' .carousel-control-next').attr('disabled', true);
+            } else {
+                $(slider + ' .carousel-control-next').attr('disabled', false);
+            }
+        } else {
+            $(slider + ' .carousel-control').attr('disabled', false);
+        }
+    }
+
+    function renderDots() {
+        if (!touchDevice) {
+            $(slider + ' .carousel-indicators li').hide();
+            $(slider + ' .carousel-indicators li:first-of-type').show();
+            $(slider + ' .carousel-indicators li:nth-of-type(' + (slideCount) + 'n+1)').show();
+        }
     }
 
     function renderColumns() {
